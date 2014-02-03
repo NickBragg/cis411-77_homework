@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="styleSheet" href="style.css">
+		<script src="js/jquery.min.js"</script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="validetta.js"></script>
+		<script type="text/javascript" src="validetta/languages/validettaLang-tr.js"></script>
+		<link href="validetta/validetta.css" rel="stylesheet" type="text/css" media="screen" >
+	</head>
+	<body id="body">
+	<h1 class="head">Register<h1>
+	<form method="post" id="register" action="#" >
+		<div class="formlabel">First Name</div><input class="input" data-validetta="required" type="text" id="fname"/><br>
+		<div class="formlabel">Last Name</div><input class="input" type="text" id="lname"/><br>
+		<div class="formlabel">Email</div><input class="input" type="text" id="email"/><br>
+		<div class="formlabel">Organization</div><input class="input" type="text" id="org"/><br>
+		<div class="formlabel">Password</div><input class="input" type="password" id="pw"/><br>
+		<input type="submit" value="Submit" class="submit"/>
+	</form>
+	<a class="link" href="welcome.html">Go Back.</a>
+	</body>
+	<script>
+		$(document).ready(function($){
+			$('#register').validetta({
+				realtime: true
+			});
+		});
+	
+	</script>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="styleSheet" href="style.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+</head>
+<h1 id="header"> Tic Tac Toe! </h1>
+<div id="outBorder">
+	<body id="body">
+		<table id="table" cellspacing="0">
+				<tr id="row1">
+					<td id="cell11" data-rownum="0" data-colnum="0">&nbsp;</td>
+					<td id="cell12" data-rownum="0" data-colnum="1">&nbsp;</td>
+					<td id="cell13" data-rownum="0" data-colnum="2">&nbsp;</td>
+				</tr>
+				<tr id="row2">
+					<td id="cell21" data-rownum="1" data-colnum="0">&nbsp;</td>
+					<td id="cell22" data-rownum="1" data-colnum="1">&nbsp;</td>
+					<td id="cell23" data-rownum="1" data-colnum="2">&nbsp;</td>
+				</tr>
+				<tr id="row3">
+					<td id="cell31" data-rownum="2" data-colnum="0">&nbsp;</td>
+					<td id="cell32" data-rownum="2" data-colnum="1">&nbsp;</td>
+					<td id="cell33" data-rownum="2" data-colnum="2">&nbsp;</td>
+		</table>
+		</tr>
+	</body>
+	<a class="link" href="welcome.html">Go Back.</a>
+<div>
+<script>
+	 var board = [
+		[0, 0, 0],
+		[0, 0, 0],
+		[0, 0, 0]
+	];
+	
+	var winner = 0;
+	
+	var turn = {
+		player : 0,
+		currentPlayer: function() {
+			if(this.player % 2 === 0 )
+			{
+				return 1;
+			}
+			else
+			{
+				return 2;
+			}
+		},
+			nextTurn: function(){
+				this.player += 1;
+			}
+		};
+	
+		
+		function checkDiagonal() {
+			var match = true;
+			for (i = 0; i < board.length; i++) {
+				if(board[i][i] === 0 || board[i][i] !== board[0][0]) {
+					match = false;
+				}
+			}
+			if(match) {
+				return match;
+			}
+			match = true;
+			for (i = 0; i < board.length; i++) {
+				if(board[i][2-i] === 0 || board[i][2-i] !== board[0][2]){
+					match = false;
+				}
+			}
+			if(match){
+				return match;
+			}
+		}
+		
+		function checkRow() {
+			
+			for( i=0; i<board.length; i++) {
+				var match = true;
+				for( t = 0; t<board[i].length; t++) {
+					if(board[i][t] === 0 || board[i][t] !== board[i][0]) {
+						match = false
+					}
+				}
+				if(match)
+				{
+					return match;
+				}
+			}
+		}
+				
+		function checkColumn() {
+			for (i=0; i<board.length; i++){
+				var match = true;
+				
+				for(t = 0; t<board[i].length; t++) {
+					if(board[t][i] === 0 || board[t][i] !== board[0][i]){
+						match = false;
+					}
+				}
+				if(match){
+					return match;
+				}
+			}
+		}
+		
+		function checkForWin() {
+			if(checkRow() === true || checkColumn === true || checkDiagonal() === true)
+			{
+				winner = turn.currentPlayer();
+				alert("Player" + winner + "wins!!");
+				location.reload();
+			}
+			else{
+				turn.nextTurn();
+			}
+		}
+	
+		function changeCell(cell) {
+			var row = $(cell).data("rownum");
+			var col = $(cell).data("colnum");
+			
+			board[row][col] = turn.currentPlayer();
+			
+			if(turn.currentPlayer() == 1){
+				$(cell).addClass("x");
+			}
+			else{
+				$(cell).addClass("o");
+			}
+			
+		}
+	 
+	
+	$(document).ready(function(){
+		
+		$("#cell11, #cell12,#cell13, #cell21, #cell22, #cell23, #cell31, #cell32, #cell33").click(
+					function(){
+						var cell = $(this);
+						
+						if( !cell.hasClass("x") && !cell.hasClass("o") && winner === 0)
+						{
+							
+							changeCell(this);
+							checkForWin();
+							<!-- if(player == 1)
+							//{
+								//player = 2;
+								//cell.addClass("x");
+								<!-- cell.css("background","black"); -->
+							//}
+							//else
+							//{
+								//player = 1;
+								//cell.addClass("o");
+								<!-- cell.css("background","red"); -->
+							//} -->
+						}
+					}
+				);
+	});
+</script>
+</html>

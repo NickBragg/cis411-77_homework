@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="bragg.uofl-cis411.com" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Nick\\Documents\\GitHub\\cis411-77_homework\\homework5\\\.gitignore\\MVCMovie\\MVCMovie\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Nick\\Documents\\GitHub\\cis411-77_homework\\homework5\\\.gitignore\\MVCMovie\\MVCMovie\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." value="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-MVCMovie-20140228074523.mdf;Initial Catalog=aspnet-MVCMovie-20140228074523;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Nick\\Documents\\GitHub\\cis411-77_homework\\homework5\\\.gitignore\\MVCMovie\\MVCMovie\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="MovieDBContext-Web.config Connection String" description="MovieDBContext Connection String used in web.config by the application to access the database." value="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Movies.mdf;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Nick\\Documents\\GitHub\\cis411-77_homework\\homework5\\\.gitignore\\MVCMovie\\MVCMovie\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MovieDBContext']/@connectionString" />
+  </parameter>
+</parameters>

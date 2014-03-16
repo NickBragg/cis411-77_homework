@@ -31,6 +31,14 @@ namespace MvcPet.Utilities
 
             return inventoryList;
         }
+        public Inventory GetInventoryItem(int? id)
+        {
+            inventoryList = GetPetList();
+            Inventory inv = new Inventory();
+
+            inv = inventoryList.Find(x=>x.ID == id);
+            return inv;
+        }
 
         public string DescriptionModifier(string origDesc)
         {

@@ -31,9 +31,28 @@ namespace MvcPet.Utilities
 
             return inventoryList;
         }
+        public List<Inventory> GetInventoryForDetails()
+        {
+            petList = db.Pets.ToList();
+
+            foreach (var pet in petList)
+            {
+                inventoryList.Add(new Inventory
+                {
+                    ID = pet.ID,
+                    Description = pet.Description,
+                    Name = pet.Name,
+                    Picture = pet.Picture,
+
+
+                });
+            }
+
+            return inventoryList;
+        }
         public Inventory GetInventoryItem(int? id)
         {
-            inventoryList = GetPetList();
+            inventoryList = GetInventoryForDetails();
             Inventory inv = new Inventory();
 
             inv = inventoryList.Find(x=>x.ID == id);
@@ -44,7 +63,7 @@ namespace MvcPet.Utilities
         {
             string modifiedDesc;
 
-            modifiedDesc = origDesc.Substring(0, 15) + "...";
+            modifiedDesc = origDesc.Substring(0, 35) + "...";
 
             return modifiedDesc;
         }

@@ -15,7 +15,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Picture)
+            @*@Html.DisplayFor(model => model.Picture)*@
+            <img height="200" width="200" src="@Url.Content(Model.Picture)" alt="Pet Image"/>
         </dd>
 
         <dt>

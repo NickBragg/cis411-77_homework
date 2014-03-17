@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Drawing;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace MvcPet.Models
 {
@@ -12,8 +13,14 @@ namespace MvcPet.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateRecieved { get; set; }
+
         public int Quantity { get; set; }
+
+        [Range(1, 100)]
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
         public string Picture { get; set; }
     }

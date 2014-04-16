@@ -46,7 +46,7 @@ namespace MvcPet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Name,Description,DateRecieved,Quantity,Price,Picture")] Pet pet)
+        public ActionResult Create([Bind(Include="ID,Name,Description,DateRecieved,Quantity,Price,Picture")] Pet pet, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {

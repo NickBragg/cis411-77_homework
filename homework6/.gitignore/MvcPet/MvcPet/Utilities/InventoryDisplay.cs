@@ -43,8 +43,6 @@ namespace MvcPet.Utilities
                     Description = pet.Description,
                     Name = pet.Name,
                     Picture = pet.Picture,
-
-
                 });
             }
 

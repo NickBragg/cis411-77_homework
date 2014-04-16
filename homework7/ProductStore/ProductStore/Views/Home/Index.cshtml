@@ -1,5 +1,4 @@
-﻿
-@section Scripts {
+﻿@section Scripts {
     <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
     <script type="text/javascript">
 
@@ -17,11 +16,9 @@
                     product.Quantity(0);
                 });
             }
-
             self.getDetails = function (order) {
                 self.details(new OrderDetailsViewModel(order));
             }
-
             self.createOrder = function () {
                 var jqxhr = $.ajax({
                     type: 'POST',
@@ -37,62 +34,64 @@
                         self.errorMessage(errorThrown);
                     }  
                 });
-            };
-        };
-        function ProductViewModel(root, product) {
-            var self = this;
-            self.ProductId = product.Id;
-            self.Name = product.Name;
-            self.Price = product.Price;
-            self.Quantity = ko.observable(0);
-
-            self.addItemToCart = function () {
-                var qty = self.Quantity();
-                if (qty == 0) {
-                    root.cart.push(self);
-                }
-                self.Quantity(qty + 1);
-            };
-
-            self.removeAllFromCart = function () {
-                self.Quantity(0);
-                root.cart.remove(self);
-            };
-        }
-        function OrderDetailsViewModel(order) {
-            var self = this;
-            self.items = ko.observableArray();
-            self.Id = order.Id;
-
-            self.total = ko.computed(function () {
-                var sum = 0;
-                $.each(self.items(), function (index, item) {
-                    sum += item.Price * item.Quantity;
-                });
-                return '$' + sum.toFixed(2);
-            });
-
-            $.getJSON("/api/orders/" + order.Id, function (order) {
-                $.each(order.Details, function (index, item) {
-                    self.items.push(item);
-                })
-            });
+            }
         };
 
-    $(document).ready(function () {
-        ko.applyBindings(new AppViewModel());
+    function ProductViewModel(root, product) {
+        var self = this;
+        self.ProductId = product.Id;
+        self.Name = product.Name;
+        self.Price = product.Price;
+        self.Quantity = ko.observable(0);
 
-        $.getJSON("/api/products", function (products) {
-            $.each(products, function (index, product) {
-                self.products.push(new ProductViewModel(self, product));
-            })
+        self.addItemToCart = function () {
+            var qty = self.Quantity();
+            if (qty == 0) {
+                root.cart.push(self);
+            }
+            self.Quantity(qty + 1);
+        };
+
+        self.removeAllFromCart = function () {
+            self.Quantity(0);
+            root.cart.remove(self);
+        };
+    }
+    function OrderDetailsViewModel(order) {
+        var self = this;
+        self.items = ko.observableArray();
+        self.Id = order.Id;
+
+        self.total = ko.computed(function () {
+            var sum = 0;
+            $.each(self.items(), function (index, item) {
+                sum += item.Price * item.Quantity;
+            });
+            return '$' + sum.toFixed(2);
         });
 
-        $.getJSON("api/orders", self.orders);
+        $.getJSON("/api/orders/" + order.Id, function (order) {
+            $.each(order.Details, function (index, item) {
+                self.items.push(item);
+            })
+        });
+    };
+    $(document).ready(function () {
+        ko.applyBindings(new AppViewModel());
     });
+    $.getJSON("/api/products", function (products) {
+        $.each(products, function (index, product) {
+            self.products.push(new ProductViewModel(self, product));
+        })
+    });
+
+    $.getJSON("api/orders", self.orders);
+
 
     </script>
 }
+
+
 <div class="content">
     <!-- List of products -->
     <div class="float-left">
